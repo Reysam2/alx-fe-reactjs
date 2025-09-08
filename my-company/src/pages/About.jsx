@@ -1,9 +1,7 @@
-import Navbar from "../assets/components/Navbar";
-
 function About() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div style={{ padding: "20px" }}>
         <h1>About Us</h1>
         <p>

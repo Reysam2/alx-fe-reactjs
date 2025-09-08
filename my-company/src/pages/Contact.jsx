@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Navbar from "../assets/components/Navbar";
+import { useState } from "react"; 
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -19,7 +18,7 @@ function Contact() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div style={{ padding: "20px" }}>
         <h1>Contact Us</h1>
