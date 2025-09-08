@@ -1,7 +1,6 @@
 function About() {
   return (
-    <>
-      {/* <Navbar /> */}
+    <> 
       <div style={{ padding: "20px" }}>
         <h1>About Us</h1>
         <p>
