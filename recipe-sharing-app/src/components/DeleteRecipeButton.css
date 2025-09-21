@@ -1,0 +1,28 @@
+@import url(./AddRecipeForm.css);
+
+.delete-btn {
+  position: absolute;
+  right: 12rem;
+  padding: 0.4rem 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--clr-grn);
+    font-weight: bold;
+  border: 0.1rem solid var(--clr-grn);
+  transition: all 0.25s;
+  text-decoration: none;
+  color:var(--clr-blk) ;
+  font-size: 1.3rem;
+}
+
+.delete-btn:hover {
+  border: 0.1rem solid var(--clr-grn);
+  background: var(--clr-blk);
+  color: var(--clr-grn);
+  cursor: pointer;
+}
+
+.delete-btn:active {
+  transform:translate(0.34rem, 0.34rem) ;
+  transition: all 0.1s;
+}
