@@ -1,0 +1,46 @@
+:root {
+  --clr-grn: rgb(84, 242, 84);
+  --clr-blk: #000;
+}
+
+ 
+
+.nav {
+  height: 10rem;
+  width: 100%;
+  background-color: var(--clr-blk);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.1rem solid var(--clr-grn)
+}
+
+.nav__logo-blk {
+  width: 20%; 
+  color: var(--clr-grn);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__links-blk {
+  min-width: 40%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__links {
+  list-style-type: none;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__link {
+  margin-right: 2.5rem;
+  font-weight: bold;
+  color: var(--clr-grn);
+  cursor: pointer;
+  text-decoration:  none;
+} 

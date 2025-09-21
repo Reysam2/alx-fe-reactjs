@@ -1,0 +1,66 @@
+@import url(./Navbar.css);
+
+.recipe__form-blk {
+  width: 100%;
+  background-color: var(--clr-blk);
+  height: 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.form {
+  min-width: 50%;
+  height: 70%;
+}
+
+.form__field {
+  margin-top: 2.5rem;
+}
+
+.form__heading {
+  color: var(--clr-grn);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+}
+
+.recipe__title,
+.recipe__description {
+  padding: 2%;
+  width: 90%;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.recipe__description {
+  height: 10rem;
+}
+
+.form__submit-btn {
+  margin-top: 3rem;
+  width: 50%;
+}
+
+.submit-btn {
+  padding: 0.8rem 3rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--clr-grn);
+  font-weight: bold;
+  border: 0.1rem solid var(--clr-grn);
+  transition: all 0.25s ; 
+}
+
+.submit-btn:hover {
+  border: 0.1rem solid var(--clr-grn);
+  background: var(--clr-blk);
+  color: var(--clr-grn);
+  cursor: pointer;
+}
+
+.submit-btn:active {
+  transform:translate(0.34rem, 0.34rem) ;
+  transition: all 0.1s;
+}
