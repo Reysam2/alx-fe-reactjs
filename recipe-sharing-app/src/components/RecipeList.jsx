@@ -1,7 +1,6 @@
 import useRecipeStore from "./recipeStore";
 import "./RecipeList.css";
-import "./ViewButton.css";
-import DeleteRecipeButton from "./DeleteRecipeButton";
+import "./ViewButton.css"; 
 import { Link } from "react-router-dom"; 
 
 const RecipeList = () => {
@@ -16,8 +15,7 @@ const RecipeList = () => {
           <Link to={`/recipe-details/${recipe.id}`} className="view-btn">
             View
           </Link>
-
-          <DeleteRecipeButton recipeId={recipe.id} />
+ 
         </div>
       ))}
     </div>
