@@ -1,8 +1,8 @@
 @import url(./AddRecipeForm.css);
 .view-btn {
   position: absolute;
-  right: 3rem;
-  padding: 0.2rem 1.8rem;
+  right: 6rem;
+  padding: 0.2rem 1.2rem;
   border: none;
   border-radius: 0.3rem;
   background: var(--clr-grn);

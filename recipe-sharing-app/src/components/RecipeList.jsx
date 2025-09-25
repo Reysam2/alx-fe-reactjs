@@ -3,9 +3,12 @@ import "./RecipeList.css";
 import "./ViewButton.css";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import FavoritesButton from "./FavoriteButton.jsx";
 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
+
+  console.log(recipes)
 
   const searchTerm = useRecipeStore((state) => state.searchTerm);
 
@@ -13,7 +16,7 @@ const RecipeList = () => {
 
   const filterRecipes = useRecipeStore((state) => state.filterRecipes);
 
-  const listToShow = searchTerm? filteredRecipes : recipes;
+  const listToShow = searchTerm ? filteredRecipes : recipes;
 
   return (
     <div className="recipe__card-display">
@@ -26,7 +29,7 @@ const RecipeList = () => {
       >
         <SearchBar />
         <button
-        onClick={filterRecipes}
+          onClick={filterRecipes}
           style={{
             padding: "0.3rem 1.5rem",
             border: "none",
@@ -47,6 +50,8 @@ const RecipeList = () => {
           <Link to={`/recipe-details/${recipe.id}`} className="view-btn">
             View
           </Link>
+
+          <FavoritesButton key={recipe.id} recipeId={recipe.id} />
         </div>
       ))}
     </div>
