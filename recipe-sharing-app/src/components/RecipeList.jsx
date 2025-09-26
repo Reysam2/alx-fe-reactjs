@@ -8,7 +8,7 @@ import FavoritesButton from "./FavoriteButton.jsx";
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
 
-  console.log(recipes)
+  console.log(recipes);
 
   const searchTerm = useRecipeStore((state) => state.searchTerm);
 
@@ -41,6 +41,30 @@ const RecipeList = () => {
         >
           Search
         </button>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "5rem",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: '3rem'
+        }}
+      >
+        <Link to="/favorites" className="view-btn "  style={{
+          position: 'relative', 
+        }}>
+        View Favorite Recipes
+        </Link>
+
+        <Link style={{
+          position: 'relative',
+          marginLeft: '5rem',
+        }} to="/recommended-recipes" className="view-btn ">
+           View Recommended Recipes 
+        </Link>
       </div>
 
       {listToShow.map((recipe) => (

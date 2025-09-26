@@ -62,7 +62,8 @@ const useRecipeStore = create(persist(
     return { recommendations: recommended };
   }),
 
-  })
+  }),
+   { name: "recipe-store",}
 ));
 
 export default useRecipeStore
