@@ -5,22 +5,29 @@
 
 .query__container {
   width: 100%;
-  height: 100%; 
-  margin-top: 10rem;;
+  height: 100%;
+  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.query__heading-blk { 
+.query__heading-blk {
   display: flex;
+  flex-direction: column;
+  align-items:center;
   justify-content: center;
-  margin-top: 3rem;
+  margin: 3rem 0;
 }
 
-.query__heading {
+.query__heading,.query__txt {
   color: var(--clr-grn);
   margin-bottom: 1rem;
+}
+
+.query__txt {
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .form {
@@ -29,15 +36,15 @@
 }
 
 .field__input {
-   padding: 0.4rem 1.5rem;
-   border: none;
-   outline: none;
+  padding: 0.4rem 1.5rem;
+  border: none;
+  outline: none;
   font-size: 1.6rem;
 }
 
 .submit-btn {
   padding: 0.4rem 2rem;
-  border: none; 
+  border: none;
   background: var(--clr-grn);
   font-weight: bold;
   border: 0.1rem solid var(--clr-grn);
@@ -57,35 +64,70 @@
 .submit-btn:active {
   transform: translate(0.34rem, 0.34rem);
   transition: all 0.1s;
-};
+}
 
 .query__output {
- width: 100%;
- width:100%;
- background-color: red;;
+  width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
- 
 .query__output-heading {
-  color:var(--clr-grn);
- margin-top: 10rem;
-
+  color: var(--clr-grn);
+  margin-top: 10rem;
 }
 
-
-.links { 
- color: var(--clr-grn);
- margin-top: 3rem;; 
+.links {
+  color: var(--clr-grn);
+  margin-top: 3rem;
 }
 
 .link__item {
+  margin-bottom: 2rem;
+  border: 0.1rem solid var(--clr-grn);
+  width: 40rem;
+  height: 10rem;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: center;
+  justify-content: center; 
+  padding-left: 2%;
+}
+
+.item-avatar {
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.item-name-link { 
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  color: var(--clr-grn);
+  font-size: 1.6rem;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 
 .link {
   color: var(--clr-grn);
   text-decoration: none;
-  font-weight: bold;
-   padding: 0.4rem 2rem;
-   margin-top: 3rem;
+  font-weight: bold; 
+text-align: center;
+ 
 }
