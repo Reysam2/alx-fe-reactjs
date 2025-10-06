@@ -45,7 +45,7 @@ function Search() {
               ); 
               return { id: user.id, count: res.data.public_repos };
             } catch (error) {
-              console.log(`Error fetching repos for ${user.login}`, error);
+              setError(`Error fetching repos for ${user.login}`, error);
               return { id: user.id, count: 0 };
             }
           })
@@ -76,7 +76,7 @@ function Search() {
       }
     } catch (error) {
       setError(error.message);
-      console.error(error);
+  
     } finally {
       setLoading(false);
     }

@@ -24,8 +24,8 @@ export const fetchUserData = async ({ username, location, minRepos, page = 1, pe
     return response.data.items;
 
   } catch (error) {
-    console.log("Error fetching Github users", error)
-    throw error
+throw new Error("Error fetching Github users", error)
+ 
   }
 
 
