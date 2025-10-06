@@ -1,11 +1,12 @@
 import "./Search.css";
 import { useState } from "react";
 import { fetchUserData } from "../services/githubService";
-import axios from "axios"; 
+import axios from "axios";
 
 function Search() {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +29,7 @@ function Search() {
         username,
         location,
         page: newPage,
-        per_page: perPage 
+        per_page: perPage,
       });
 
       if (results.length === 0) {
@@ -36,12 +37,13 @@ function Search() {
         // console.log(results);
         setError("No users found");
       } else {
-        setUsers(results);
-
+       
         const userRepos = await Promise.all(
           results.map(async (user) => {
             try {
-              const res = await axios.get(`https://api.github.com/users/${user.login}`);
+              const res = await axios.get(
+                `https://api.github.com/users/${user.login}`
+              );
               // console.log(res.data.length )
               return { id: user.id, count: res.data.public_repos };
             } catch (error) {
@@ -54,6 +56,25 @@ function Search() {
         // console.log(userRepos)
 
         setRepoCounts(userRepos);
+        // apply min-repos filter
+
+        if (minRepos) {
+          const min = Number(minRepos);
+          if (!isNaN(min)) {
+            const filtered = results.filter((user) => {
+              const repo = userRepos.find((r) => r.id === user.id)?.count ?? 0;
+              return repo >= min;
+            });
+            if (filtered.length === 0) {
+              setError(`No users found with at least ${min} repositories`);
+            }
+            setUsers(filtered);
+          } else {
+            setError("Minimum repos must be a number");
+          }
+        } else {
+          setUsers(results);
+        }
 
         setPage(newPage);
       }
@@ -64,9 +85,7 @@ function Search() {
       setLoading(false);
     }
   };
-
-  // const repos = await axios.get(users.repos_url)
-  //       setRepoCount(repos.length)
+ 
 
   return (
     <div className="query__container">
@@ -77,10 +96,10 @@ function Search() {
         </p>
       </div>
 
-      <form className="form" onSubmit={handleSearch}>
+      <form className="form sm:flex flex-col md:flex flex-row" onSubmit={handleSearch}>
         <div className="field">
           <input
-            className="field__input"
+            className="field__input w-95 border border-white "
             value={username}
             placeholder="Enter Github username"
             type="text"
@@ -90,11 +109,21 @@ function Search() {
 
         <div className="field">
           <input
-            className="field__input"
+            className="field__input w-65 border-2 border-red-100"
             value={location}
             placeholder="Enter Location"
             type="text"
             onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+
+        <div className="field">
+          <input
+            className="field__input w-65"
+            value={minRepos}
+            placeholder="Minimum Repos"
+            type="text"
+            onChange={(e) => setMinRepos(e.target.value)}
           />
         </div>
 
@@ -116,37 +145,36 @@ function Search() {
 
         <ol className="links">
           {users.map((user) => {
-            const repos = repoCounts?.find((r) => r.id === user.id)?.count ?? "N/A";
-            return(
-            <li className="link__item" key={user.id}>
-              <div className="item-avatar">
-                <img
-                  className="avatar"
-                  src={user.avatar_url}
-                  alt="User Avatar"
-                />
-              </div>
+            const repos =
+              repoCounts?.find((r) => r.id === user.id)?.count ?? "N/A";
+            return (
+              <li className="link__item" key={user.id}>
+                <div className="item-avatar">
+                  <img
+                    className="avatar"
+                    src={user.avatar_url}
+                    alt="User Avatar"
+                  />
+                </div>
 
-              <div className="item-name-link">
-                
-                <div className="name-repo-count">
-                  <p className="name">{user.login}</p>
-                   <p className="repo-count">{repos} Repos</p>
+                <div className="item-name-link">
+                  <div className="name-repo-count">
+                    <p className="name">{user.login}</p>
+                    <p className="repo-count">{repos} Repos</p>
                   </div>
-                
 
-                <a
-                  className="link"
-                  href={user.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {user.html_url}
-                </a>
-               
-              </div>
-            </li>
-          )})}
+                  <a
+                    className="link"
+                    href={user.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {user.html_url}
+                  </a>
+                </div>
+              </li>
+            );
+          })}
         </ol>
 
         {/* Pagination */}
