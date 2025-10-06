@@ -12,14 +12,16 @@ export const fetchUserData = async ({ username, location, minRepos, page = 1, pe
     if(minRepos) {
       query += ` repos:>${minRepos}`
     }
-    const response = await axios.get(`https://api.github.com/search/users`, {
-      params: {
-        q: query,
-        page,
-        per_page,  
-      },
+  const response = await axios.get(`https://api.github.com/search/users?q`, {
+  params: { q: query, page, per_page },
+  paramsSerializer: params => {
+    // Remove the duplicate 'q=' key
+    const { q, ...rest } = params;
+    const queryString = new URLSearchParams(rest).toString();
+    return `${encodeURIComponent(q)}${queryString ? '&' + queryString : ''}`;
+  }
+});
 
-    })
     // console.log(response.data)
     return response.data.items;
 
