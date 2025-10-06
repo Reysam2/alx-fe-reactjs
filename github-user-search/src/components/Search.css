@@ -1,6 +1,6 @@
 :root {
   --clr-grn: rgb(84, 242, 84);
-  --clr-blk: #000;
+  --clr-blk: #272626;
 }
 
 .query__container {
@@ -15,12 +15,13 @@
 .query__heading-blk {
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   margin: 3rem 0;
 }
 
-.query__heading,.query__txt {
+.query__heading,
+.query__txt {
   color: var(--clr-grn);
   margin-bottom: 1rem;
 }
@@ -42,7 +43,9 @@
   font-size: 1.6rem;
 }
 
-.submit-btn {
+.submit-btn,
+.previous-btn,
+.next-btn {
   padding: 0.4rem 2rem;
   border: none;
   background: var(--clr-grn);
@@ -54,45 +57,57 @@
   font-size: 1.3rem;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.previous-btn:hover,
+.next-btn:hover {
   border: 0.1rem solid var(--clr-grn);
   background: var(--clr-blk);
   color: var(--clr-grn);
   cursor: pointer;
 }
 
-.submit-btn:active {
+.submit-btn:active,
+.previous-btn:active,
+.next-btn:active {
   transform: translate(0.34rem, 0.34rem);
   transition: all 0.1s;
-}
-
-.query__output {
-  width: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .query__output-heading {
   color: var(--clr-grn);
   margin-top: 10rem;
+  text-align: center;
 }
 
 .links {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   color: var(--clr-grn);
   margin-top: 3rem;
+  gap: 5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    color: var(--clr-grn);
+    margin-top: 3rem;
+    gap: 5rem;
+  }
 }
 
 .link__item {
   margin-bottom: 2rem;
   border: 0.1rem solid var(--clr-grn);
-  width: 40rem;
+  max-width: 40rem;
   height: 10rem;
   display: grid;
   grid-template-columns: 10rem 1fr;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   padding-left: 2%;
 }
 
@@ -109,12 +124,14 @@
   object-fit: cover;
   border-radius: 50%;
 }
-.item-name-link { 
+.item-name-link {
   height: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 4rem;
 }
 
 .name {
@@ -124,10 +141,34 @@
   margin-bottom: 1rem;
 }
 
+.name-repo-count {
+  display: flex
+  ;
+}
+
+.repo-count {
+  text-align: center;
+  margin-left: 4rem;
+  font-weight: 600;
+}
+
 .link {
   color: var(--clr-grn);
   text-decoration: none;
-  font-weight: bold; 
-text-align: center;
- 
+  font-weight: bold;
+  text-align: center;
+  text-wrap: inherit;
+}
+
+.pagination {
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5rem 0;
+}
+
+.previous-btn,
+.next-btn {
 }
