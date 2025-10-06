@@ -20,9 +20,7 @@ export const fetchUserData = async ({ username, location, minRepos, page = 1, pe
     const queryString = new URLSearchParams(rest).toString();
     return `${encodeURIComponent(q)}${queryString ? '&' + queryString : ''}`;
   }
-});
-
-    // console.log(response.data)
+}); 
     return response.data.items;
 
   } catch (error) {

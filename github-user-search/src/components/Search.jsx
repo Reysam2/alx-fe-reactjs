@@ -33,8 +33,7 @@ function Search() {
       });
 
       if (results.length === 0) {
-        setUsers([]);
-        // console.log(results);
+        setUsers([]); 
         setError("No users found");
       } else {
        
@@ -43,17 +42,14 @@ function Search() {
             try {
               const res = await axios.get(
                 `https://api.github.com/users/${user.login}`
-              );
-              // console.log(res.data.length )
+              ); 
               return { id: user.id, count: res.data.public_repos };
             } catch (error) {
               console.log(`Error fetching repos for ${user.login}`, error);
               return { id: user.id, count: 0 };
             }
           })
-        );
-
-        // console.log(userRepos)
+        ); 
 
         setRepoCounts(userRepos);
         // apply min-repos filter
@@ -96,7 +92,7 @@ function Search() {
         </p>
       </div>
 
-      <form className="form sm:flex flex-col md:flex flex-row" onSubmit={handleSearch}>
+      <form className="form sm:flex flex-col md:flex " onSubmit={handleSearch}>
         <div className="field">
           <input
             className="field__input w-95 border border-white "
