@@ -24,6 +24,7 @@
 .query__txt {
   color: var(--clr-grn);
   margin-bottom: 1rem;
+  padding:5%
 }
 
 .query__txt {
@@ -31,11 +32,7 @@
   font-weight: 500;
 }
 
-.form {
-  display: flex;
-  justify-content: center;
-}
-
+ 
 .field__input {
   padding: 0.4rem 1.5rem;
   border: none;

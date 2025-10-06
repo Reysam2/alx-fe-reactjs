@@ -87,15 +87,15 @@ function Search() {
     <div className="query__container">
       <div className="query__heading-blk">
         <h1 className="query__heading">Github User Search</h1>
-        <p className="query__txt">
+        <p className="query__txt text-center sm:mx-9">
           Browse users and their profiles via the GitHub API
         </p>
       </div>
 
-      <form className="form sm:flex flex-col md:flex " onSubmit={handleSearch}>
+      <form className="form sm:flex flex-row" onSubmit={handleSearch}>
         <div className="field">
           <input
-            className="field__input w-95 border border-white "
+            className="field__input w-[100%] sm:w-95 "
             value={username}
             placeholder="Enter Github username"
             type="text"
@@ -105,7 +105,7 @@ function Search() {
 
         <div className="field">
           <input
-            className="field__input w-65 border-2 border-red-100"
+            className="field__input w-[100%] border-2 border-red-100 sm:w-65"
             value={location}
             placeholder="Enter Location"
             type="text"
@@ -115,7 +115,7 @@ function Search() {
 
         <div className="field">
           <input
-            className="field__input w-65"
+            className="field__input w-[100%] sm:w-65"
             value={minRepos}
             placeholder="Minimum Repos"
             type="text"
@@ -123,7 +123,7 @@ function Search() {
           />
         </div>
 
-        <button className="submit-btn" type="submit">
+        <button className="submit-btn w-[100%]" type="submit">
           Search
         </button>
       </form>
