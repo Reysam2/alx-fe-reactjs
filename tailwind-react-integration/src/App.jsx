@@ -1,11 +1,13 @@
-function App() { 
-  return ( 
+import UserProfile from "./components/UserProfile";
+
+function App() {
+  return (
     <>
-    <div>
-      <h1>My First App With tailwindcss</h1>
-    </div>
+      <div>
+        <UserProfile />
+      </div>
     </>
-   );
+  );
 }
 
 export default App;
