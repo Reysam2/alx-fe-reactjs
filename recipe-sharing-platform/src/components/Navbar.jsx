@@ -13,7 +13,7 @@ function Navbar() {
             <Link className="hover:text-amber-600 font-extrabold" to="/">Recipes</Link>
           </li>
           <li>
-            <Link className="hover:text-amber-600 font-extrabold" to="/create-recipe">Create Recipes</Link>
+            <Link className="hover:text-amber-600 font-extrabold" to="/add-recipe">Add Recipes</Link>
           </li>
         </ul>
       </div>

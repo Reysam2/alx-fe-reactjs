@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import RecipeStore from "../store/Store";
 
-function CreateRecipe() {
+function AddRecipeForm() {
   const addRecipes = RecipeStore((state) => state.addRecipes);
   const navigate = useNavigate();
 
@@ -100,7 +100,7 @@ function CreateRecipe() {
               type="text"
               value={cookingInstructions}
               onChange={(e) => setCookingInstructions(e.target.value)}
-              placeholder="CookingInstructions"
+              placeholder="Preparation steps"
             ></textarea>
           </div>
           {error && 
@@ -115,4 +115,4 @@ function CreateRecipe() {
   );
 }
 
-export default CreateRecipe;
+export default AddRecipeForm;

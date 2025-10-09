@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes  } from "react-router-dom";
 import HomePage from "./components/HomePage.jsx";
 import RecipeDetail from "./components/RecipeDetail.jsx";
-import CreateRecipe from "./components/CreateRecipe.jsx";
+import AddRecipeForm from "./components/AddRecipeForm.jsx";
 import Navbar from "./components/Navbar.jsx";
 Navbar
 
@@ -13,7 +13,7 @@ Navbar
      <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
-      <Route path="/create-recipe" element={<CreateRecipe />} />
+      <Route path="/add-recipe" element={<AddRecipeForm />} />
      </Routes>
     </Router>
    );

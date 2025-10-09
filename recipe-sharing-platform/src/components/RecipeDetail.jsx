@@ -2,15 +2,23 @@ import { useParams } from "react-router-dom";
 import recipesData from "../data.json";
 import { Link } from "react-router-dom";
 import RecipeStore from "../store/Store";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 
 
 function RecipeDetail() {
   const { id } = useParams();
   const userRecipes = RecipeStore((state) => state.userRecipes)
+  const [newRecipes, setNewRecipes] = useState([])
 
-  const newRecipes =  useMemo (() => [...recipesData, ...userRecipes], [userRecipes])
+  useEffect(() => {
+
+  const allRecipes = [...recipesData, ...userRecipes] 
+
+  setNewRecipes(allRecipes)
   
+  } ,[userRecipes])
+  
+
   const recipe = newRecipes.find((item) => item.id === parseInt(id));
 
   if (!recipe) return <h2>Recipe not found</h2>;
@@ -21,7 +29,8 @@ function RecipeDetail() {
       {/* Card */}
       <div className="min-h-[40rem] min-w-[95%] md:w-[100%] flex flex-col justify-around items-center lg:grid lg:grid-cols-[30rem_minmax(30rem,40rem)] md:grid-cols-[21rem_34rem] md:justify-items-center gap-2 bg-blue-300 ">
         {/* Img Block */}
-        <div className="bg-orange-900 w-[20rem] h-[15rem] lg:w-[100%] lg:h-[70%]  flex items-center justify-center overflow-hidden">
+        <div className="bg-orange-900 w-[20rem] h-[15rem] lg:w-[100%] lg:h-[70%]  flex items-center justify-center overflow-hidden  hover:shadow-amber-100 hover:shadow-md hover:drop-shadow-lg
+transition duration-200 ease-in-out">
           <img
             className="w-[100%] h-[100%] text-center rounded-[1rem] bg-amber-100 flex justify-center items-center text-xs hover:scale-110 transition-transform duration-200 md:h-[100%] md:w-[100%] md:rounded-none"
             src={recipe.image}
