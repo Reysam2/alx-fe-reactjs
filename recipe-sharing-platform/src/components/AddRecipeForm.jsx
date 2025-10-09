@@ -10,7 +10,9 @@ function AddRecipeForm() {
   const [summary, setSummary] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [cookingInstructions, setCookingInstructions] = useState("");
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState(false);
+
+  const [validate, setValidate] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,30 +24,38 @@ function AddRecipeForm() {
       cookingInstructions,
     };
 
-    if (
-      !title.trim() ||
-      !summary.trim() ||
-      !ingredients.trim() ||
-      !cookingInstructions.trim()
-    ) {
-      setError(true);
+    const isValid = 
+      title.trim()  &&
+      summary.trim()  &&
+      ingredients.trim()  &&
+      cookingInstructions.trim()
+    
+      if(!isValid)   {
+      setValidate(false);
+      setErrors(true);
       return;
     }
-
-    setError(false);
-    addRecipes(newRecipes);
-    setTitle("");
-    setSummary("");
-    setIngredients("");
-    setCookingInstructions("");
     
-    navigate("/");
 
+    if (validate) {
+      setValidate(true)
+      setErrors(false);
+      addRecipes(newRecipes);
+      setTitle("");
+      setSummary("");
+      setIngredients("");
+      setCookingInstructions("");
+
+      navigate("/");
+    }
+
+     setValidate(true);
+      setErrors(false);
   };
 
   return (
     <div className="min-h-[50rem] w-dvw bg-amber-50 flex flex-col items-center justify-center">
-      <div className="mt-15 font-bold  text-[clamp(1.8rem,1.5vw,3rem)] text-center  text-amber-900 tracking-wide mx-5">
+      <div className="mt-15 font-bold  text-[clamp(1.8rem,1.5vw,3rem)] text-center  text-amber-900 tracking-wide md:tracking-wider mx-5">
         <h1 className="mb-2">Feel Like Adding Your Own Recipes?</h1>
         <p className="text-[1.4rem]"> Fill the Form.</p>
       </div>
@@ -103,9 +113,11 @@ function AddRecipeForm() {
               placeholder="Preparation steps"
             ></textarea>
           </div>
-          {error && 
-            <h1 className="text-amber-800 text-xl text-center">Please enter a recipe</h1>
-          }
+          {errors && (
+            <h1 className="text-amber-800 text-xl text-center">
+              Please enter a recipe
+            </h1>
+          )}
           <button className="px-3.5 py-2 mt-4 border border-amber-900 rounded text-sm cursor-pointer hover:bg-amber-900  hover:text-amber-200 hover:font-extrabold active:scale-90 text-amber-900 transition duration-200 ease-in-out shadow-sm drop-shadow-sm ">
             Add Recipe
           </button>
