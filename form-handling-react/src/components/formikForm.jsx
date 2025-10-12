@@ -1,0 +1,112 @@
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
+
+// validation schema with Yup
+const validationSchema = Yup.object({
+  name: Yup.string().required("Name is Required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(7, "Password must be at least 7 characters ")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/,
+      "Password must contain at least one letter, one number and one special character"
+    ),
+});
+
+function FormikForm() {
+  const [successMessage, setSuccessMessage] = useState("");
+  return (
+    <Formik
+      initialValues={{
+        name: "",
+        email: "",
+        password: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values, { resetForm }) => {
+        console.log(values);
+        resetForm();
+        setSuccessMessage("Registration Successful");
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
+      }}
+    >
+      <Form className="bg-gradient-to-br from-[#fee685] via-[#fef3c6] to-[#ffd230] border border-amber-200 w-[30rem] h-[clamp(40rem,45rem,50rem)] sm:w-[36rem] sm:min-h-[46rem]   bg-linear-90  flex  flex-col justify-center items-center  rounded-[1.5rem]  shadow-2xl drop-shadow-2xl shadow-amber-900 transition-all duration-200 ease-in-out  ">
+        <div className="w-[80%] mb-10 h-[2.5rem]">
+          <h1 className="text-[clamp(1.8rem,1.5vw,4rem)]  font-bold text-amber-950">
+            Registration Form
+          </h1>
+        </div>
+
+        <div className=" w-[80%] min-h-[60%]  transition-all duration-200 ease-in-out">
+          {/* Name input field */}
+          <div className="mb-10">
+            <Field
+              className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)] py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
+              type="text"
+              placeholder="FirstName"
+              name="name"
+            />
+            <ErrorMessage
+              className="text-red-600 mt-1 mb-[-0.5rem] text-md"
+              name="name"
+              component="div"
+            />
+          </div>
+
+          {/* Email input field */}
+          <div className="mb-10">
+            <Field
+              className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)]  py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
+              type="email"
+              name="email"
+              placeholder="Email Address"
+            />
+            <ErrorMessage
+              className="text-red-600 mt-1 mb-[-0.5rem] text-md"
+              name="email"
+              component="div"
+            />
+          </div>
+
+          {/* Password input field */}
+          <div>
+            <Field
+              className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)]  py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+            <ErrorMessage
+              className="text-red-600 mt-1 text-md mb-[-0.5rem]"
+              name="password"
+              component="div"
+            />
+          </div>
+
+          {/* Register Button */}
+          <div className="mt-12">
+            <button
+              className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)] text-amber-950 py-[0.6rem] w-full rounded-md text-[1.6rem] 
+              hover:bg-gradient-to-br from-[#973c00] to-[#e17100]   hover:text-amber-100 transition-all duration-200 ease-in-out hover:shadow-2xl hover:shadow-amber-400 "
+              type="submit"
+            >
+              Register
+            </button>
+          </div>
+
+          {successMessage && (
+            <p className="text-2xl text-green-600 mt-4">{successMessage}</p>
+          )}
+        </div>
+      </Form>
+    </Formik>
+  );
+}
+
+export default FormikForm;
