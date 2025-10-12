@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -23,7 +23,7 @@ function RegistrationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.password) {
+    if (!formData.username || !formData.email || !formData.password) {
       setError("All fields are required");
       return;
     }
@@ -32,7 +32,7 @@ function RegistrationForm() {
    
 
     setFormData({
-      name: "",
+      username: "",
       email: "",
       password: "",
     });
@@ -66,7 +66,7 @@ setTimeout(() => {
               type="text"
               placeholder="FirstName"
               name="name"
-              value={formData.name}
+              value={formData.username}
               onChange={handleChange}
             />
           </div>

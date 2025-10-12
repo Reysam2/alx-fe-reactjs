@@ -1,21 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { validationSchema } from "./formikForm.js";
 import { useState } from "react";
 
 // validation schema with Yup
-const validationSchema = Yup.object({
-  name: Yup.string().required("Name is Required"),
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .min(7, "Password must be at least 7 characters ")
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/,
-      "Password must contain at least one letter, one number and one special character"
-    ),
-});
+
 
 function FormikForm() {
   const [successMessage, setSuccessMessage] = useState("");
@@ -36,7 +24,7 @@ function FormikForm() {
         }, 3000);
       }}
     >
-      <Form className="bg-gradient-to-br from-[#fee685] via-[#fef3c6] to-[#ffd230] border border-amber-200 w-[30rem] h-[clamp(40rem,45rem,50rem)] sm:w-[36rem] sm:min-h-[46rem]   bg-linear-90  flex  flex-col justify-center items-center  rounded-[1.5rem]  shadow-2xl drop-shadow-2xl shadow-amber-900 transition-all duration-200 ease-in-out  ">
+      <Form className="bg-gradient-to-br from-[#fee685] via-[#fef3c6] to-[#ffd230] border border-amber-200 w-[30rem] h-[clamp(40rem,45rem,50rem)] sm:w-[36rem] sm:min-h-[46rem]  flex  flex-col justify-center items-center  rounded-[1.5rem]  shadow-2xl drop-shadow-2xl shadow-amber-900 transition-all duration-200 ease-in-out  ">
         <div className="w-[80%] mb-10 h-[2.5rem]">
           <h1 className="text-[clamp(1.8rem,1.5vw,4rem)]  font-bold text-amber-950">
             Registration Form
