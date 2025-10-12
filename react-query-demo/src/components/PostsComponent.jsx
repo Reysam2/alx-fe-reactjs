@@ -10,9 +10,14 @@ function PostsComponent() {
       console.log(res.data);
       return res.data;
     },
+     keepPreviousData: true,
+     staleTime: 10000,
+     refetchOnWindowFocus: true,
+     cacheTime: 300000,
+      
   });
 
-  const handleRefetch = () => {
+  const fetchPosts = () => {
      refetch()
   };
 
@@ -22,7 +27,7 @@ function PostsComponent() {
   return (
     <div className="w-[100%] h-[100%] bg-gray-300 grid grid-cols-2 place-items-center gap-x-2 gap-y-7 p-2">
       <div>
-        <button onClick={handleRefetch} className="border p-[0.5rem_1.6rem] hover:text-amber-200 hover:bg-amber-950 transition-all duration-200 ease-in-out active:scale-90">
+        <button onClick={fetchPosts} className="border p-[0.5rem_1.6rem] hover:text-amber-200 hover:bg-amber-950 transition-all duration-200 ease-in-out active:scale-90">
           Refresh
         </button>
       </div>
