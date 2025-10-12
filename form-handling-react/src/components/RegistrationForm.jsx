@@ -8,14 +8,16 @@ function RegistrationForm() {
   });
 
   // const [isValid, setIsValid] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setErrors] = useState("");
   const  [successMessage, setSuccessMessage] = useState("")
+
+  const {username, email, password} = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((state) => ({ ...state, [name]: value }));
     if(error) {
-      setError("")
+      setErrors("")
       setSuccessMessage("")
     }
   };
@@ -23,12 +25,20 @@ function RegistrationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.email || !formData.password) {
-      setError("All fields are required");
+    if (!username) {
+      setErrors("All fields are required");
       return;
-    }
- 
-    console.log(formData);
+    } 
+   
+    if (!email) {
+      setErrors("All fields are required");
+      return;
+    } 
+   
+    if (!password) {
+      setErrors("All fields are required");
+      return;
+    } 
    
 
     setFormData({
@@ -36,6 +46,7 @@ function RegistrationForm() {
       email: "",
       password: "",
     });
+
     setSuccessMessage("Registration Successful")
 
 setTimeout(() => {
@@ -65,8 +76,8 @@ setTimeout(() => {
               className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)] py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
               type="text"
               placeholder="FirstName"
-              name="name"
-              value={formData.username}
+              name="username"
+              value={username}
               onChange={handleChange}
             />
           </div>
@@ -77,7 +88,7 @@ setTimeout(() => {
               className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)]  py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
               type="email"
               name="email"
-              value={formData.email}
+              value={email}
               placeholder="Email Address"
               onChange={handleChange}
             />
@@ -89,7 +100,7 @@ setTimeout(() => {
               className="border border-amber-950 text-[clamp(1.3rem, 1.5vw, 2rem)]  py-[2.5%] px-[3.5%] w-full outline-none rounded-md focus-visible:border-[#973c00] placeholder-amber-900"
               type="password"
               name="password"
-              value={formData.password}
+              value={password}
               placeholder="Password"
               onChange={handleChange}
             />
