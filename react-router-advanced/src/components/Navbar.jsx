@@ -19,7 +19,7 @@ function Navbar() {
             <Link to="/login">Login</Link>
           </li>
            <li className="mx-2">
-            <Link to="/posts:id">Blog</Link>
+            <Link to="/blog:id">Blog</Link>
           </li>
         </ul>
       </div>
