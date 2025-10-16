@@ -1,7 +1,7 @@
 import { BrowserRouter as Router , Routes, Route } from "react-router-dom";
-import TodoList from "./components/TodoList";
-import AddTodoForm from "./components/AddTodoForm";
-import NavBar from "./components/NavBar";
+import TodoList from "./component/TodoList";
+import AddTodoForm from "./component/AddTodoForm";
+import NavBar from "./component/NavBar";
  
  
 
