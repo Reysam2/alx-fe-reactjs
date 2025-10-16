@@ -2,34 +2,46 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import TodoList from "../components/TodoList";
 import { useTodoStore } from "../store/TodoStore";
-import { vi, test, expect } from "vitest";
+import { vi, test, expect, beforeEach } from "vitest";
 
+// Mock the store
 vi.mock("../store/TodoStore", () => ({
   useTodoStore: vi.fn(),
 }));
 
-test("renders TodoList and handles toggle & delete", () => {
-  const removeTodoMock = vi.fn();
-  const toggleCompleteMock = vi.fn();
+let removeTodoMock;
+let toggleCompleteMock;
+
+beforeEach(() => {
+  removeTodoMock = vi.fn();
+  toggleCompleteMock = vi.fn();
 
   useTodoStore.mockReturnValue({
-    todos: [{ id: 1, task: "Test Todo", completed: false }],
+    todos: [
+      { id: 1, task: "Test Todo 1", completed: false },
+      { id: 2, task: "Test Todo 2", completed: true },
+    ],
     removeTodo: removeTodoMock,
     toggleComplete: toggleCompleteMock,
   });
+});
 
+test("renders initial todos", () => {
   render(<TodoList />);
+  expect(screen.getByText("Test Todo 1")).toBeInTheDocument();
+  expect(screen.getByText("Test Todo 2")).toBeInTheDocument();
+});
 
-  // Check todo is rendered
-  expect(screen.getByText("Test Todo")).toBeInTheDocument();
-
-  // Toggle button (flexible matcher for text)
-  const toggleButton = screen.getByText((text) => text.includes("Complete"));
-  fireEvent.click(toggleButton);
+test("toggles a todo", () => {
+  render(<TodoList />);
+  const toggleButtons = screen.getAllByText((text) => text.includes("Complete"));
+  fireEvent.click(toggleButtons[0]); // click first todo's button
   expect(toggleCompleteMock).toHaveBeenCalledWith(1);
+});
 
-  // Delete button
-  const deleteButton = screen.getByText("Delete");
+test("deletes a todo", () => {
+  render(<TodoList />);
+  const deleteButton = screen.getAllByText("Delete")[0]; // first todo
   fireEvent.click(deleteButton);
   expect(removeTodoMock).toHaveBeenCalledWith(1);
 });
